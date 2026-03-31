@@ -1,0 +1,5 @@
+-- Hello World simple in English
+start {
+    say("Hello, world from Mesa!")
+    say("This is a bilingual language 🌍")
+}

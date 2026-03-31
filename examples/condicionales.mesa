@@ -1,0 +1,76 @@
+-- ============================================
+-- Condicionales / Conditionals
+-- ============================================
+
+función clasificar_edad(edad) {
+    si edad < 0 {
+        dar "Edad inválida"
+    } sino si edad < 13 {
+        dar "Niño"
+    } sino si edad < 18 {
+        dar "Adolescente"
+    } sino si edad < 65 {
+        dar "Adulto"
+    } sino {
+        dar "Adulto mayor"
+    }
+}
+
+function get_grade(score) {
+    if score >= 90 {
+        give "A"
+    } else if score >= 80 {
+        give "B"
+    } else if score >= 70 {
+        give "C"
+    } else if score >= 60 {
+        give "D"
+    } else {
+        give "F"
+    }
+}
+
+inicio {
+    decir("=== Condicionales en Mesa ===\n")
+    
+    -- Clasificación de edades
+    decir("1. Clasificación por edad:")
+    edades = [5, 15, 25, 70]
+    para edad en edades {
+        categoria = clasificar_edad(edad)
+        decir("   {edad} años -> {categoria}")
+    }
+    
+    decir("")
+    
+    -- Calificaciones
+    say("2. Grade classification:")
+    scores = [95, 82, 75, 65, 45]
+    for score in scores {
+        grade = get_grade(score)
+        say("   Score {score} -> Grade {grade}")
+    }
+    
+    decir("")
+    
+    -- Operadores lógicos
+    decir("3. Operadores lógicos:")
+    a = verdadero
+    b = falso
+    
+    decir("   verdadero y falso = {a y b}")
+    decir("   verdadero o falso = {a o b}")
+    say("   not true = {no a}")
+    
+    decir("")
+    
+    -- Comparaciones
+    say("4. Comparisons:")
+    x = 10
+    y = 20
+    
+    say("   {x} < {y} = {x < y}")
+    say("   {x} > {y} = {x > y}")
+    say("   {x} == {y} = {x == y}")
+    say("   {x} != {y} = {x != y}")
+}

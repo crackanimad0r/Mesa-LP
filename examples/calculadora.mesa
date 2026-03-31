@@ -1,0 +1,38 @@
+-- Calculadora simple bilingüe
+
+función sumar(a, b) {
+    dar a + b
+}
+
+function restar(a, b) {
+    give a - b
+}
+
+función multiplicar(a, b) -> a * b
+
+function dividir(a, b) {
+    si b == 0 {
+        give nada
+    }
+    dar a / b
+}
+
+inicio {
+    decir("=== Calculadora Mesa ===")
+    say("=== Mesa Calculator ===\n")
+    
+    x = 15
+    y = 3
+    
+    decir("Números: {x} y {y}")
+    
+    suma = sumar(x, y)
+    resta = restar(x, y)
+    mult = multiplicar(x, y)
+    div = dividir(x, y)
+    
+    decir("Suma: {suma}")
+    say("Subtraction: {resta}")
+    decir("Multiplicación: {mult}")
+    say("Division: {div}")
+}

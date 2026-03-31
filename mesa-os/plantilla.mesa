@@ -1,0 +1,101 @@
+-- plantilla_os.mesa
+-- Plantilla base con lectura de teclado
+
+LOAD_ADDR = 0x7C00
+IMAGEN = "mesa-os/plantilla.img"
+CERO = 0
+
+msg_bienvenida = "\r\n +---------------------------+\r\n | Mi OS con Mesa Language  |\r\n | Escribe y aparece!       |\r\n +---------------------------+\r\n\r\n"
+msg_creador = "\r\n Esto es una plantilla simple de OS creado con Mesa. Esto tiene gran potencial\r\n"
+msg_prompt = "\r\n> "
+
+asm = x86_nuevo()
+iniciar_boot(asm)
+modo_video(asm, 0x03)
+limpiar_pantalla(asm)
+mover_cursor(asm, CERO, CERO)
+
+-- Mostrar bienvenida
+apuntar(asm, LOAD_ADDR, "msg_bienvenida")
+llamar(asm, "print_str")
+
+-- Mostrar texto creador
+apuntar(asm, LOAD_ADDR, "msg_creador")
+llamar(asm, "print_str")
+
+-- Mostrar prompt
+etiqueta(asm, "prompt")
+apuntar(asm, LOAD_ADDR, "msg_prompt")
+llamar(asm, "print_str")
+
+-- Loop: leer tecla → mostrar → repetir
+etiqueta(asm, "leer")
+llamar(asm, "read_key")       -- AL = tecla pulsada
+
+-- Si Enter (13) → nueva línea + nuevo prompt
+cmp_al(asm, 13)
+si_igual(asm, "nueva_linea")
+
+-- Si Backspace (8) → borrar
+cmp_al(asm, 8)
+si_igual(asm, "borrar")
+
+-- Cualquier otra tecla → mostrar
+push_ax(asm)
+llamar(asm, "print_char")
+pop_ax(asm)
+jmp_a(asm, "leer")
+
+-- Nueva línea al pulsar Enter
+etiqueta(asm, "nueva_linea")
+x86_bytes(asm, [0xB4, 0x0E])        -- MOV AH, 0Eh
+x86_bytes(asm, [0xB0, 0x0D])        -- MOV AL, 13 (CR)
+x86_bytes(asm, [0xBB, 0x07, 0x00])  -- MOV BX, 7
+x86_bytes(asm, [0xCD, 0x10])        -- INT 10h
+x86_bytes(asm, [0xB0, 0x0A])        -- MOV AL, 10 (LF)
+x86_bytes(asm, [0xCD, 0x10])        -- INT 10h
+jmp_a(asm, "prompt")
+
+-- Borrar al pulsar Backspace
+etiqueta(asm, "borrar")
+x86_bytes(asm, [0xB4, 0x0E])        -- MOV AH, 0Eh
+x86_bytes(asm, [0xB0, 0x08])        -- MOV AL, 8 (BS)
+x86_bytes(asm, [0xBB, 0x07, 0x00])  -- MOV BX, 7
+x86_bytes(asm, [0xCD, 0x10])        -- INT 10h
+x86_bytes(asm, [0xB0, 0x20])        -- MOV AL, espacio (borrar)
+x86_bytes(asm, [0xCD, 0x10])        -- INT 10h
+x86_bytes(asm, [0xB0, 0x08])        -- MOV AL, 8 (volver atrás)
+x86_bytes(asm, [0xCD, 0x10])        -- INT 10h
+jmp_a(asm, "leer")
+
+-- Halt fallback
+etiqueta(asm, "fin")
+hlt(asm)
+jmp_a(asm, "fin")
+
+-- Funciones BIOS
+insertar_print_str(asm)
+insertar_print_char(asm)
+insertar_read_key(asm)
+
+-- Strings
+cadena(asm, "msg_bienvenida", msg_bienvenida)
+cadena(asm, "msg_creador", msg_creador)
+cadena(asm, "msg_prompt", msg_prompt)
+
+-- Compilar y lanzar
+decir("Compilando...")
+codigo = compilar(asm)
+tam = len(codigo)
+decir("Tamaño: {tam} bytes")
+
+si tam > 510 {
+    decir("Error: demasiado grande")
+    salir(1)
+}
+
+boot = bootsector(codigo)
+crear_directorio("mesa-os")
+archivo_escribir_bytes(IMAGEN, boot)
+decir("Lanzando QEMU...")
+lanzar_qemu(IMAGEN)

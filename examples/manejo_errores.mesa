@@ -1,0 +1,65 @@
+-- Manejo de errores bilingüe
+
+función dividir_seguro(a, b) {
+    si b == 0 {
+        dar nada
+    }
+    dar a / b
+}
+
+function procesar_datos(lista) {
+    si tamaño(lista) == 0 {
+        give nada
+    }
+    
+    suma = 0
+    para num en lista {
+        suma = suma + num
+    }
+    
+    give suma / tamaño(lista)
+}
+
+inicio {
+    decir("=== Manejo de Errores ===\n")
+    
+    -- Try-catch básico
+    intentar {
+        decir("Intentando operación peligrosa...")
+        resultado = 10 / 0
+        decir("Resultado: {resultado}")
+    } capturar error {
+        decir("❌ Error capturado: {error}")
+    }
+    
+    say("")
+    
+    -- Validación manual
+    x = 20
+    y = 0
+    
+    resultado = dividir_seguro(x, y)
+    
+    si resultado == nada {
+        decir("❌ No se puede dividir por cero")
+    } sino {
+        decir("✅ Resultado: {resultado}")
+    }
+    
+    say("")
+    
+    -- Procesar listas
+    lista_vacia = []
+    lista_numeros = [10, 20, 30, 40]
+    
+    promedio1 = procesar_datos(lista_vacia)
+    promedio2 = procesar_datos(lista_numeros)
+    
+    si promedio1 == nada {
+        say("⚠️  Empty list, cannot calculate average")
+    }
+    
+    if promedio2 != nada {
+        decir("✅ Promedio: {promedio2}")
+    }
+}

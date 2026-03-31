@@ -1,0 +1,199 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""Mesa Language v2.2.0 - LA CABRA"""
+import sys
+import os
+
+# --- ARREGLO PARA COMANDO GLOBAL ---
+# os.path.realpath resuelve el enlace simbólico para encontrar la carpeta real
+MESA_DIR = os.path.dirname(os.path.realpath(__file__))
+if MESA_DIR not in sys.path:
+    sys.path.insert(0, MESA_DIR)
+# -----------------------------------
+
+VERSION = "2.2.0"
+
+def print_help():
+    print("""
+🏓 Mesa Language v""" + VERSION + """ - LA CABRA
+
+USO: mesa [comando] <archivo>
+
+COMANDOS:
+  correr, run <archivo>     Ejecutar programa
+  ayuda, help               Mostrar ayuda
+  version                   Mostrar version
+
+MODULOS INTEGRADOS (sin imports, sin libs):
+  📁 Filesystem      leer, escribir, copiar, dirs, rutas, permisos
+  🌐 HTTP Client     GET, POST, PUT, DELETE, PATCH, HEAD, descargar
+  🌐 HTTP Server     rutas, middleware, estatico, JSON responses
+  📋 JSON            parsear, serializar, archivos, rutas, merge
+  🔍 Regex           buscar, reemplazar, dividir, validaciones
+  🔐 Crypto          MD5, SHA, HMAC, Base64, UUID, passwords
+  🗄️  Database        SQLite completo, CRUD, transacciones
+  ⚡ Concurrencia    hilos, canales, mutex, paralelo, timers
+  📊 CSV             leer, escribir, parsear
+  🗜️  Compresion      gzip, zlib, archivos
+  📅 DateTime        fechas, formateo, diferencias, zonas
+  💻 Sistema         comandos shell, env vars, benchmark
+  🔧 Funcional       map, filter, reduce, group, zip, chunk
+
+EJEMPLOS:
+  mesa correr hola.mesa
+  mesa run server.mesa
+  mesa hola.mesa
+  mesa                      Modo interactivo
+""")
+
+def run_file(path, debug=False):
+    # Los imports se hacen aquí para asegurar que MESA_DIR ya esté en el path
+    try:
+        from compiler.lexer import Lexer, LexerError
+        from compiler.parser import Parser, ParseError
+        from compiler.interpreter import Interpreter, MesaError
+    except ImportError as e:
+        print(f"Error crítico: No se encontraron los módulos del compilador en {MESA_DIR}")
+        print(f"Detalle: {e}")
+        sys.exit(1)
+
+    try:
+        with open(path, 'r', encoding='utf-8') as f:
+            source = f.read()
+    except FileNotFoundError:
+        print(f"Archivo no encontrado: {path}")
+        sys.exit(1)
+
+    try:
+        lex = Lexer(source)
+        toks = lex.tokenize()
+
+        if debug:
+            print("=== TOKENS ===")
+            for i, t in enumerate(toks):
+                print(f"  {i}: {t}")
+            print()
+
+        parser = Parser(toks)
+        ast = parser.parse()
+
+        interp = Interpreter(debug=debug)
+        interp.interpret(ast)
+
+        # Si el intérprete tiene un sistema de tests nativo (como vimos en el DOCS)
+        if hasattr(interp, 'tests') and interp.tests:
+            interp.run_tests()
+
+    except (LexerError, ParseError) as e:
+        print(f"\n{e}", file=sys.stderr)
+        sys.exit(1)
+    except Exception as e:
+        # Manejo genérico de MesaError si existe como clase
+        if hasattr(e, 'message'):
+            print(f"\nError: {e.message}", file=sys.stderr)
+        else:
+            print(f"\nError: {e}", file=sys.stderr)
+        
+        if debug:
+            import traceback
+            traceback.print_exc()
+        sys.exit(1)
+
+def repl():
+    print(f"\n 🏓 Mesa Language v{VERSION} - LA CABRA")
+    print(" Modo interactivo. Escribe 'salir' para salir.\n")
+
+    try:
+        from compiler.lexer import Lexer
+        from compiler.parser import Parser
+        from compiler.interpreter import Interpreter
+    except ImportError:
+        print("Error: No se pudieron cargar los componentes del lenguaje.")
+        return
+
+    interp = Interpreter()
+    buf = []
+    brace = 0
+
+    while True:
+        try:
+            prompt = "....> " if brace > 0 else "mesa> "
+            line = input(prompt)
+
+            if line.strip() in ('salir', 'exit', 'quit'):
+                print("Adios!")
+                break
+
+            if not line.strip() and brace == 0:
+                continue
+
+            buf.append(line)
+            brace += line.count('{') - line.count('}')
+
+            if brace > 0:
+                continue
+
+            code = '\n'.join(buf)
+            buf = []
+            brace = 0
+
+            try:
+                lex = Lexer(code)
+                toks = lex.tokenize()
+                parser = Parser(toks)
+                ast = parser.parse()
+                r = None
+                for s in ast.statements:
+                    r = interp.execute(s)
+                if r is not None:
+                    # _fmt es tu método interno para imprimir valores de Mesa
+                    if hasattr(interp, '_fmt'):
+                        print(interp._fmt(r))
+                    else:
+                        print(r)
+            except Exception as e:
+                print(f"Error: {e}")
+        except (KeyboardInterrupt, EOFError):
+            print("\nAdios!")
+            break
+
+def main():
+    args = sys.argv[1:]
+
+    if not args:
+        repl()
+        return
+
+    cmd = args[0].lower()
+
+    if cmd in ('ayuda', 'help', '-h', '--help'):
+        print_help()
+        return
+
+    if cmd in ('version', 'versión', '-v', '--version'):
+        print(f"Mesa Language v{VERSION}")
+        return
+
+    if cmd in ('correr', 'run', 'ejecutar'):
+        if len(args) < 2:
+            print("Error: Especifica un archivo .mesa")
+            sys.exit(1)
+        debug = '--debug' in args or '-d' in args
+        run_file(args[1], debug=debug)
+        return
+
+    # Si no es un comando, intentar ejecutar como archivo directo
+    path = cmd
+    if not os.path.exists(path) and not path.endswith('.mesa'):
+        path = cmd + '.mesa'
+    
+    if os.path.exists(path):
+        debug = '--debug' in args or '-d' in args
+        run_file(path, debug=debug)
+        return
+
+    print(f"Comando o archivo desconocido: {cmd}")
+    print("Usa 'mesa ayuda' para ver los comandos disponibles.")
+
+if __name__ == '__main__':
+    main()
