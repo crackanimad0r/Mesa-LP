@@ -1,80 +1,94 @@
-🐐 Mesa Language v2.2.0
-Mesa es un lenguaje de programación bilingüe y soberano diseñado para romper las barreras entre el desarrollo de alto nivel y la ingeniería de sistemas. Con una sintaxis humana y un motor de Bytecode optimizado, Mesa te permite construir desde servidores web modernos hasta núcleos de sistemas operativos (Kernels) de 512 bytes.
+Markdown
+# 🏓 Mesa Language v2.2.0 — LA CABRA 🐐
 
-🚀 ¿Por qué Mesa?
-Soberanía Total: +200 funciones nativas. Olvídate de npm install o pip install. HTTP, Criptografía, Bases de Datos y JSON vienen integrados.
+![Mesa Banner](https://img.shields.io/badge/Mesa-v2.2.0-orange?style=for-the-badge&logo=python)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+![Platform](https://img.shields.io/badge/Platform-Linux-lightgrey?style=for-the-badge&logo=linux)
 
-Bilingüe por Diseño: Programa en Español o Inglés sin alias ni parches. decir() es tan potente como say().
+**Mesa** es un lenguaje de programación bilingüe, potente y ligero, diseñado para ser "la cabra" (The G.O.A.T) del desarrollo de sistemas y scripts rápidos. Con una sintaxis intuitiva y módulos integrados de alto nivel, Mesa elimina la necesidad de instalaciones complejas.
 
-De la Web al Hierro: Escribe una aplicación web completa en 20 líneas o baja al nivel de los registros x86 para crear tu propio OS.
+---
 
-Compilador x86 Nativo: Incluye x86.py, un compilador que transforma tu código Mesa en binarios reales para hardware real.
+## ⚡ Características Principales
 
-🎨 Alto Nivel: Web sin HTML
-Mesa elimina la frustración del desarrollo web. No más etiquetas infinitas, solo lógica pura (Tranquilos, tambien se puede usar HTML en caso de mayor conocimiento o personalizacion).
+* **🚀 Sin Imports:** Todos los módulos (HTTP, SQL, Crypto, Filesystem) están integrados en el núcleo.
+* **🌍 Bilingüe:** Escribe código que se entiende tanto en inglés como en español.
+* **💻 Low-Level Ready:** Capaz de generar imágenes de kernel (`mesa-os`) y manejar memoria.
+* **📦 Instalación Instantánea:** Un comando y tienes el lenguaje en todo tu sistema.
 
-Fragmento de código
--- Una web profesional en segundos
-pagina("Mesa World", "oceano")
+---
 
-navbar("Mesa", [["Inicio", "/"], ["Docs", "/docs"]])
+## 🛠️ Módulos Integrados (Baterías Incluidas)
 
-titulo("Bienvenido al Futuro")
-texto("Crea webs potentes sin escribir ni una línea de HTML.")
+Mesa viene cargado con todo lo que necesitas para el mundo real:
 
-tarjeta("Soberanía", "Mesa no depende de librerías externas.")
+| Módulo | Funcionalidades |
+| :--- | :--- |
+| 🌐 **Network** | Servidor HTTP, Cliente REST (GET, POST), JSON Responses. |
+| 🔐 **Crypto** | MD5, SHA256, HMAC, Base64, UUID y cifrado de passwords. |
+| 🗄️ **Database** | Motor SQLite completo con CRUD y transacciones. |
+| ⚡ **Concurrency** | Hilos, canales, mutex y timers paralelos. |
+| 📁 **System** | Gestión de archivos, variables de entorno y comandos shell. |
+| 📅 **Utils** | Regex, CSV, Compresión (Gzip), DateTime y Funcional (Map/Filter). |
 
-alerta("Mesa es LA CABRA 🐐", "exito")
+---
 
-web_servir(8080)
-💻 Bajo Nivel: Creación de Sistemas (OS Mode)
-Mesa es capaz de hablarle directamente al procesador. Aquí tienes un sector de arranque (Bootsector) funcional escrito en Mesa:
+## 🚀 Instalación Rápida
 
-Fragmento de código
--- plantilla_os.mesa
-asm = x86_nuevo()
-iniciar_boot(asm)
-modo_video(asm, 0x03)
-limpiar_pantalla(asm)
+Para instalar Mesa en tu sistema Linux (Ubuntu/Debian/Arch):
 
-apuntar(asm, 0x7C00, "Hola desde MesaOS")
-llamar(asm, "print_str")
-
--- Compilar a binario real de 512 bytes
-codigo = compilar(asm)
-boot = bootsector(codigo)
-archivo_escribir_bytes("mesa.img", boot)
-🛠️ Características Principales
-🌐 Web Stack: Servidor HTTP, Cliente, y generador de interfaces integrado.
-
-🔐 Seguridad: Implementación nativa de SHA256, HMAC y gestión de contraseñas.
-
-🗄️ Persistencia: Soporte directo para SQLite y archivos CSV/JSON.
-
-⚡ Concurrencia: Sistema de tareas y canales para procesamiento en paralelo.
-
-🔧 Low-Level: Acceso a registros x86, gestión de memoria manual (reservar/liberar) y punteros.
-
-📦 Instalación Rápida
-Para instalar Mesa en tu sistema Linux (basado en Debian/Ubuntu):
-
-Bash
-curl -s https://raw.githubusercontent.com/tu-usuario/mesa-lang/main/install.sh | bash
-O clona el repositorio y compila manualmente:
-
-Bash
-git clone https://github.com/tu-usuario/mesa-lang.git
-cd mesa-lang
+```bash
+git clone [https://github.com/crackanimad0r/Mesa-LP.git](https://github.com/crackanimad0r/Mesa-LP.git)
+cd Mesa-LP
+chmod +x install.sh
 ./install.sh
-📖 Documentación
-La documentación completa de +2000 líneas se encuentra en el archivo DOCS.md. Incluye ejemplos detallados de cada una de las 200+ funciones nativas.
+Nota: Después de instalar, reinicia tu terminal o ejecuta source ~/.bashrc.
 
-🐐 Autor
-Creado por Crackanimador en una ilustracion de conocimientos por aburrimiento de desarrollo de 48 horas (Finalizado el 31 de Marzo).
+📖 Ejemplo de Código: Servidor Web en Mesa
+Fragmento de código
+// Crear un servidor web es así de simple
+crear_servidor(8080) {
+    ruta("/") {
+        responder_json({
+            "status": "ok",
+            "mensaje": "¡Hola desde Mesa Language! 🐐"
+        })
+    }
+}
 
-NOTA IMPORTANTE: En el desarrollo de este lenguaje, use IA para la programacion, ya que todavia no tengo conocimientos necesarios (Estoy todavia en educacion obligatoria por favor)
+imprimir("Servidor corriendo en http://localhost:8080")
+📂 Estructura del Proyecto
+compiler/: El cerebro del lenguaje (Lexer, Parser, Interpreter).
 
-Contribuir
-Si quieres ayudar a que Mesa sea el lenguaje definitivo, ¡los Pull Requests son bienvenidos! Revisa nuestra sección de tareas pendientes. Nota: Pueden empezar a idear como hacer librerias de codigo. Ya que sera mi proxima version. Sino, tranquilos, lanzare documentacion sobre como hacerlo cuando lo tenga programado.
+runtime/: Gestión de memoria y funciones nativas.
 
-Mesa Language - Codifica con Poder. Codifica en tu Idioma.
+examples/: Colección de scripts para aprender rápido.
+
+mesa-os/: Herramientas para experimentación con sistemas operativos.
+
+stdlib/: Librería estándar escrita en el propio Mesa.
+
+🗑️ Desinstalación
+Si necesitas eliminar Mesa por completo:
+
+Bash
+chmod +x uninstall.sh
+./uninstall.sh
+🤝 Contribuir
+¿Quieres mejorar a la cabra? ¡Haz un Fork, crea tu rama y manda un Pull Request!
+
+Desarrollado con ❤️ por Crackanimador
+
+
+---
+
+### 🔥 ¿Por qué este README le da vida?
+1.  **Badges (Insignias):** Al principio dan una imagen de proyecto serio y mantenido.
+2.  **Tablas:** Resumen los módulos sin cansar la vista.
+3.  **Bloques de código resaltados:** Permiten que el usuario vea la sintaxis de Mesa antes de descargar nada.
+4.  **Emojis:** Dan personalidad y guían la lectura.
+5.  **Citas (Blockquotes):** Resaltan notas importantes como el `source ~/.bashrc`.
+
+**¡Actualiza el archivo en tu GitHub y verás como el repo pasa de parecer una carpeta de archivos a ser un producto de software real!** 🚀🐐
+
+¿Quieres que te ayude a crear alguna imagen o banner para ponerlo arriba del todo?
