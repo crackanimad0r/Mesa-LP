@@ -1,94 +1,56 @@
-Markdown
-# 🏓 Mesa Language v2.2.0 — LA CABRA 🐐
+<div align="center">
 
-![Mesa Banner](https://img.shields.io/badge/Mesa-v2.2.0-orange?style=for-the-badge&logo=python)
-![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
-![Platform](https://img.shields.io/badge/Platform-Linux-lightgrey?style=for-the-badge&logo=linux)
+# 🐐 Mesa Language v2.2.0
+### "La Cabra de los lenguajes bilingües"
 
-**Mesa** es un lenguaje de programación bilingüe, potente y ligero, diseñado para ser "la cabra" (The G.O.A.T) del desarrollo de sistemas y scripts rápidos. Con una sintaxis intuitiva y módulos integrados de alto nivel, Mesa elimina la necesidad de instalaciones complejas.
+[![Mesa Version](https://img.shields.io/badge/Mesa-v2.2.0-orange?style=for-the-badge&logo=python&logoColor=white)](https://github.com/crackanimad0r/Mesa-LP)
+[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](https://github.com/crackanimad0r/Mesa-LP/blob/main/LICENSE)
+[![Platform](https://img.shields.io/badge/Platform-Linux-lightgrey?style=for-the-badge&logo=linux)](https://github.com/crackanimad0r/Mesa-LP)
+
+<p align="center">
+  <img src="https://64.media.tumblr.com/tumblr_m3pkyzYm6I1r6ao68o1_400.gif" width="150" alt="Goat GIF">
+</p>
+
+**Mesa** es un lenguaje potente, bilingüe y diseñado para ser diferente. Creado por pura pasión, aburrimiento y las ganas de tener algo único.
+
+[Instalación](#-instalación-rápida) • [Módulos](#-módulos-integrados) • [Ejemplos](#-ejemplo-de-código) • [Mesa-OS](#-mesa-os)
+
+</div>
 
 ---
 
-## ⚡ Características Principales
+## ✨ ¿Por qué Mesa?
+Mesa no es solo otro lenguaje. Es una herramienta que entiende tanto el **español** como el **inglés**, eliminando las barreras de entrada y permitiendo un desarrollo fluido.
 
-* **🚀 Sin Imports:** Todos los módulos (HTTP, SQL, Crypto, Filesystem) están integrados en el núcleo.
-* **🌍 Bilingüe:** Escribe código que se entiende tanto en inglés como en español.
-* **💻 Low-Level Ready:** Capaz de generar imágenes de kernel (`mesa-os`) y manejar memoria.
-* **📦 Instalación Instantánea:** Un comando y tienes el lenguaje en todo tu sistema.
+* **🚀 Cero dependencias:** Los módulos más importantes ya vienen dentro.
+* **🌍 Bilingüe:** Programa como hablas.
+* **🔧 Versátil:** Desde un servidor HTTP hasta un Kernel de sistema operativo.
 
 ---
 
-## 🛠️ Módulos Integrados (Baterías Incluidas)
+## 🛠️ Módulos Integrados (G.O.A.T Stack)
 
-Mesa viene cargado con todo lo que necesitas para el mundo real:
-
-| Módulo | Funcionalidades |
-| :--- | :--- |
-| 🌐 **Network** | Servidor HTTP, Cliente REST (GET, POST), JSON Responses. |
-| 🔐 **Crypto** | MD5, SHA256, HMAC, Base64, UUID y cifrado de passwords. |
-| 🗄️ **Database** | Motor SQLite completo con CRUD y transacciones. |
-| ⚡ **Concurrency** | Hilos, canales, mutex y timers paralelos. |
-| 📁 **System** | Gestión de archivos, variables de entorno y comandos shell. |
-| 📅 **Utils** | Regex, CSV, Compresión (Gzip), DateTime y Funcional (Map/Filter). |
+| Tecnología | Descripción | Badge |
+| :--- | :--- | :--- |
+| **Network** | Servidores y Clientes HTTP | ![Network](https://img.shields.io/badge/-HTTP-blue?style=flat-square) |
+| **Crypto** | MD5, SHA256 y Seguridad | ![Security](https://img.shields.io/badge/-Crypto-red?style=flat-square) |
+| **Database** | SQLite integrado | ![SQL](https://img.shields.io/badge/-SQLite-lightgrey?style=flat-square) |
+| **System** | Gestión de archivos y hilos | ![OS](https://img.shields.io/badge/-Threads-yellow?style=flat-square) |
 
 ---
 
 ## 🚀 Instalación Rápida
 
-Para instalar Mesa en tu sistema Linux (Ubuntu/Debian/Arch):
+Instala Mesa en tu sistema Linux en segundos:
 
 ```bash
+# Clonar el repositorio
 git clone [https://github.com/crackanimad0r/Mesa-LP.git](https://github.com/crackanimad0r/Mesa-LP.git)
+
+# Entrar y ejecutar el instalador universal
 cd Mesa-LP
 chmod +x install.sh
 ./install.sh
-Nota: Después de instalar, reinicia tu terminal o ejecuta source ~/.bashrc.
 
-📖 Ejemplo de Código: Servidor Web en Mesa
-Fragmento de código
-// Crear un servidor web es así de simple
-crear_servidor(8080) {
-    ruta("/") {
-        responder_json({
-            "status": "ok",
-            "mensaje": "¡Hola desde Mesa Language! 🐐"
-        })
-    }
-}
-
-imprimir("Servidor corriendo en http://localhost:8080")
-📂 Estructura del Proyecto
-compiler/: El cerebro del lenguaje (Lexer, Parser, Interpreter).
-
-runtime/: Gestión de memoria y funciones nativas.
-
-examples/: Colección de scripts para aprender rápido.
-
-mesa-os/: Herramientas para experimentación con sistemas operativos.
-
-stdlib/: Librería estándar escrita en el propio Mesa.
-
-🗑️ Desinstalación
-Si necesitas eliminar Mesa por completo:
-
-Bash
-chmod +x uninstall.sh
-./uninstall.sh
-🤝 Contribuir
-¿Quieres mejorar a la cabra? ¡Haz un Fork, crea tu rama y manda un Pull Request!
-
-Desarrollado con ❤️ por Crackanimador
-
-
----
-
-### 🔥 ¿Por qué este README le da vida?
-1.  **Badges (Insignias):** Al principio dan una imagen de proyecto serio y mantenido.
-2.  **Tablas:** Resumen los módulos sin cansar la vista.
-3.  **Bloques de código resaltados:** Permiten que el usuario vea la sintaxis de Mesa antes de descargar nada.
-4.  **Emojis:** Dan personalidad y guían la lectura.
-5.  **Citas (Blockquotes):** Resaltan notas importantes como el `source ~/.bashrc`.
-
-**¡Actualiza el archivo en tu GitHub y verás como el repo pasa de parecer una carpeta de archivos a ser un producto de software real!** 🚀🐐
-
-¿Quieres que te ayude a crear alguna imagen o banner para ponerlo arriba del todo?
+# ¡Importante! Refresca tu terminal
+source ~/.bashrc
