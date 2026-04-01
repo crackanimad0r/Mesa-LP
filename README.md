@@ -1,3 +1,6 @@
+
+<img width="1920" height="1080" alt="MESA-LP" src="https://github.com/user-attachments/assets/1e748962-8a07-46b2-8960-3bba8a441656" />
+
 # 🐐 Mesa Language v2.2.0 — LA CABRA
 
 **Mesa** es un lenguaje de programación bilingüe y soberano diseñado para romper las barreras entre el desarrollo de alto nivel y la ingeniería de sistemas. Con una sintaxis humana y un motor de Bytecode optimizado, Mesa te permite construir desde servidores web modernos hasta núcleos de sistemas operativos (Kernels) de 512 bytes.
@@ -177,3 +180,6 @@ If you want to help make Mesa the definitive language, pull requests are welcome
 Coming soon: External code library system. I’ll release documentation on how to do this when it’s ready.
 
 Mesa Language - Code with Power. Code in Your Own Language.
+
+<img width="1920" height="969" alt="Captura desde 2026-04-01 09-37-43" src="https://github.com/user-attachments/assets/9243233a-2802-4bd6-845e-4f707256eacb" />
+<img width="776" height="514" alt="Captura desde 2026-03-31 12-31-57" src="https://github.com/user-attachments/assets/3d637eec-a210-4caf-9ca1-052e9323b32d" />
