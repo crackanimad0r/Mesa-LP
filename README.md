@@ -68,9 +68,9 @@ Para instalar Mesa en tu sistema Linux (basado en Debian/Ubuntu):
 ```
 git clone [https://github.com/crackanimad0r/Mesa-LP.git](https://github.com/crackanimad0r/Mesa-LP.git)
 cd Mesa-LP
-chmod +x install.sh
-./install.sh
+chmod +x mesa
 source ~/.bashrc
+./mesa ayuda/help
 ```
 ## 📖 Documentación
 La documentación completa de +2000 líneas se encuentra en el archivo DOCS.md. Incluye ejemplos detallados de cada una de las 200+ funciones nativas.
@@ -158,9 +158,9 @@ To install Mesa on your Linux system (Debian/Ubuntu-based):
 ```
 git clone [https://github.com/crackanimad0r/Mesa-LP.git](https://github.com/crackanimad0r/Mesa-LP.git)
 cd Mesa-LP
-chmod +x install.sh
-./install.sh
+chmod +x mesa
 source ~/.bashrc
+./mesa help/ayuda
 ```
 ## 📖 Documentation
 The complete documentation, over 2,000 lines long, is located in the DOCS.md file. It includes detailed examples of each of the 200+ native functions.
