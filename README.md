@@ -75,6 +75,48 @@ chmod +x mesa
 source ~/.bashrc
 ./mesa ayuda/help
 ```
+## 🗺️ Roadmap de Mesa-LP
+
+Sigue la evolución del lenguaje. Estamos construyendo el puente entre el código bilingüe y el bajo nivel.
+
+### 🟢 v2.2.0 — **Estado Actual** (Estable)
+- [x] **Red y Web:** HTTP Client + Server nativo.
+- [x] **Utilidades Pro:** JSON, Regex, Crypto y Compresión.
+- [x] **Bases de Datos:** SQLite integrado sin dependencias.
+- [x] **Alto Rendimiento:** Concurrencia real (hilos y canales).
+- [x] **Web Builder:** Generación de HTML dinámico desde Mesa.
+- [x] **Bajo Nivel:** x86 Assembler integrado y **MesaOS** (bootea en QEMU).
+- [x] **DX (Developer Experience):** 190+ funciones bilingües y detector de errores con línea.
+
+---
+
+### 🟡 v2.3.0 — **Próximamente** (Ecosistema)
+- [ ] **Package Manager:** `mesa instalar <paquete>` para compartir código.
+- [ ] **Modularidad:** Soporte oficial para módulos de terceros.
+- [ ] **Scaffolding:** Comando `mesa nuevo proyecto` para estructuras rápidas.
+- [ ] **UI/UX:** Nuevos temas visuales para el Web Builder.
+
+---
+
+### 🔵 v3.0.0 — **El Salto al Binario** (Hito Crítico)
+- [ ] **Compilador Nativo:** Generación de binarios vía **LLVM**.
+- [ ] **Performance:** Velocidad competitiva contra **Go** y **Rust**.
+- [ ] **Tipado:** Implementación de tipado estático opcional completo.
+
+---
+
+### 🟣 v3.1.0 — **Web & Frontend**
+- [ ] **Wasm:** Compilación de Mesa a **WebAssembly**.
+- [ ] **Mesa-JS:** Ejecución de lógica Mesa directamente en el navegador.
+
+---
+
+### 🚀 v4.0.0 — **Independencia Total** (Visión Final)
+- [ ] **Runtime en Rust:** Adiós a la dependencia de Python.
+- [ ] **Self-Hosted:** Mesa compilado en el propio Mesa (Bootstrapping).
+- [ ] **Velocidad Máxima:** Optimización total a nivel de registros.
+
+
 ## 📖 Documentación
 La documentación completa de +2000 líneas se encuentra en el archivo DOCS.md. Incluye ejemplos detallados de cada una de las 200+ funciones nativas.
 
@@ -165,6 +207,48 @@ chmod +x mesa
 source ~/.bashrc
 ./mesa help/ayuda
 ```
+## 🗺️ Mesa-LP Roadmap
+
+Tracking the language evolution. We are building the bridge between bilingual syntax and low-level engineering.
+
+### 🟢 v2.2.0 — **Current State** (Stable)
+- [x] **Network & Web:** Native HTTP Client + Server.
+- [x] **Pro Utilities:** JSON, Regex, Crypto, and Compression support.
+- [x] **Database:** Zero-dependency integrated SQLite.
+- [x] **High Performance:** Real concurrency (threads and channels).
+- [x] **Web Builder:** Dynamic HTML generation directly from Mesa.
+- [x] **Low Level:** Integrated x86 Assembler and **MesaOS** (boots in QEMU).
+- [x] **DX (Developer Experience):** 190+ bilingual functions and line-by-line error detection.
+
+---
+
+### 🟡 v2.3.0 — **Upcoming** (Ecosystem)
+- [ ] **Package Manager:** `mesa install <package>` for code sharing.
+- [ ] **Modularity:** Official support for third-party modules.
+- [ ] **Scaffolding:** `mesa new project` command for rapid bootstrapping.
+- [ ] **UI/UX:** Enhanced visual themes for the Web Builder.
+
+---
+
+### 🔵 v3.0.0 — **Native Compilation** (Critical Milestone)
+- [ ] **Native Compiler:** Binary generation via **LLVM** backend.
+- [ ] **Performance:** Execution speeds competitive with **Go** and **Rust**.
+- [ ] **Typing:** Implementation of full optional static typing.
+
+---
+
+### 🟣 v3.1.0 — **Web & Frontend**
+- [ ] **Wasm:** Compiling Mesa to **WebAssembly**.
+- [ ] **Mesa-JS:** Running Mesa logic directly in the browser.
+
+---
+
+### 🚀 v4.0.0 — **Total Independence** (Final Vision)
+- [ ] **Rust Runtime:** Eliminating Python dependencies.
+- [ ] **Self-Hosted:** Mesa compiled in Mesa (**Bootstrapping**).
+- [ ] **Maximum Speed:** Register-level optimization and custom runtime.
+
+
 ## 📖 Documentation
 The complete documentation, over 2,000 lines long, is located in the DOCS.md file. It includes detailed examples of each of the 200+ native functions.
 
