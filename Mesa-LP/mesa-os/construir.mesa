@@ -1,0 +1,104 @@
+-- MesaOS - Build System
+-- Construye el OS y lo ejecuta en QEMU
+
+inicio {
+    decir("🐐 MesaOS Build System")
+    decir("=" * 40)
+
+    -- Verificar que QEMU está instalado
+    qemu_check = ejecutar_comando("which qemu-system-x86_64")
+    si no qemu_check.ok {
+        qemu_check = ejecutar_comando("which qemu-system-i386")
+        si no qemu_check.ok {
+            decir("❌ QEMU no está instalado")
+            decir("   Instala con: sudo apt install qemu-system-x86")
+            salir(1)
+        }
+    }
+    decir("✅ QEMU encontrado")
+
+    -- Crear directorio
+    crear_directorio("mesa-os")
+
+    -- Ejecutar el generador Python
+    decir("Generando imagen de disco...")
+    resultado = ejecutar_comando("python3 mesa-os/generate.py")
+
+    si resultado.ok {
+        decir(resultado.salida)
+        decir("✅ Imagen generada correctamente")
+    } sino {
+        decir("❌ Error al generar:")
+        decir(resultado.error)
+        salir(1)
+    }
+
+    -- Verificar que existe la imagen
+    si no archivo_existe("mesa-os/mesa_os.img") {
+        decir("❌ No se encontró la imagen")
+        salir(1)
+    }
+
+    info = archivo_info("mesa-os/mesa_os.img")
+    decir("Imagen: {info.tamaño} bytes")
+    decir("")
+
+    -- Mostrar los primeros bytes del bootloader
+    decir("Primeros bytes del bootloader:")
+    bytes_img = archivo_leer_bytes("mesa-os/mesa_os.img")
+    linea = "  "
+    i = 0
+    mientras i < 32 {
+        b = bytes_img[i]
+        hex_b = hex_codificar([b])
+        linea = linea + hex_b.mayusculas() + " "
+        i += 1
+        si i % 16 == 0 {
+            decir(linea)
+            linea = "  "
+        }
+    }
+
+    -- Verificar firma de boot
+    b510 = bytes_img[510]
+    b511 = bytes_img[511]
+    si b510 == 0x55 y b511 == 0xAA {
+        decir("")
+        decir("✅ Firma de boot válida: 0x55 0xAA")
+    } sino {
+        decir("❌ Firma de boot inválida!")
+        salir(1)
+    }
+
+    decir("")
+    decir("=" * 40)
+    decir("🚀 Iniciando QEMU...")
+    decir("=" * 40)
+    decir("")
+    decir("Controles:")
+    decir("  h = help")
+    decir("  i = info del sistema")
+    decir("  r = reboot")
+    decir("  Ctrl+Alt+G = liberar mouse de QEMU")
+    decir("  Ctrl+C en terminal = cerrar QEMU")
+    decir("")
+
+    -- Lanzar QEMU
+    cmd_qemu = "qemu-system-x86_64 -drive format=raw,file=mesa-os/mesa_os.img,if=floppy -m 32 -name MesaOS"
+
+    si plataforma() == "linux" {
+        -- En Linux, intentar con display
+        resultado_qemu = ejecutar_comando(cmd_qemu)
+    } sino {
+        resultado_qemu = ejecutar_comando(cmd_qemu)
+    }
+
+    si resultado_qemu.ok {
+        decir("QEMU cerrado correctamente")
+    } sino {
+        -- Intentar sin display
+        decir("Intentando modo nographic...")
+        cmd_nogfx = "qemu-system-x86_64 -drive format=raw,file=mesa-os/mesa_os.img,if=floppy -m 32 -nographic"
+        ejecutar_comando(cmd_nogfx)
+    }
+}

@@ -1,0 +1,73 @@
+-- ============================================
+-- Funciones en Mesa / Functions in Mesa
+-- ============================================
+
+-- Función simple con flecha
+función doble(x) -> x * 2
+
+-- Función con cuerpo
+función saludar(nombre) {
+    decir("¡Hola, {nombre}!")
+}
+
+-- Función con múltiples parámetros
+function calcular_area(base, altura) {
+    area = base * altura / 2
+    give area
+}
+
+-- Función recursiva: Fibonacci
+función fibonacci(n) {
+    si n <= 0 {
+        dar 0
+    }
+    si n == 1 {
+        dar 1
+    }
+    dar fibonacci(n - 1) + fibonacci(n - 2)
+}
+
+-- Función que retorna múltiples valores (como lista)
+función dividir_con_resto(a, b) {
+    cociente = a / b
+    resto = a % b
+    dar [cociente, resto]
+}
+
+inicio {
+    decir("=== Funciones en Mesa ===\n")
+    
+    -- Función simple
+    decir("1. Función doble:")
+    decir("   doble(5) = {doble(5)}")
+    decir("   doble(10) = {doble(10)}")
+    
+    decir("")
+    
+    -- Función con saludo
+    decir("2. Función saludar:")
+    saludar("Mesa")
+    saludar("Mundo")
+    
+    decir("")
+    
+    -- Área de triángulo
+    say("3. Triangle area:")
+    area = calcular_area(10, 5)
+    say("   Area of triangle (10, 5): {area}")
+    
+    decir("")
+    
+    -- Fibonacci
+    decir("4. Fibonacci:")
+    para i en 0..10 {
+        decir("   fib({i}) = {fibonacci(i)}")
+    }
+    
+    decir("")
+    
+    -- División con resto
+    say("5. Division with remainder:")
+    resultado = dividir_con_resto(17, 5)
+    say("   17 / 5 = {resultado}")
+}

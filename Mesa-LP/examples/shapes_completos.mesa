@@ -1,0 +1,102 @@
+-- Sistema de formas (OOP) bilingüe
+
+forma Persona {
+    nombre: texto
+    edad: entero
+    ciudad: texto = "Desconocida"
+    
+    función presentarse(yo) {
+        decir("Hola, soy {yo.nombre}, tengo {yo.edad} años")
+        decir("Vivo en {yo.ciudad}")
+    }
+    
+    function cumpleaños(yo) {
+        yo.edad = yo.edad + 1
+        say("🎉 ¡Feliz cumpleaños! Ahora tengo {yo.edad} años")
+    }
+    
+    función es_mayor(yo) {
+        dar yo.edad >= 18
+    }
+}
+
+shape Estudiante {
+    nombre: texto
+    carrera: texto
+    semestre: entero = 1
+    calificaciones: lista = []
+    
+    función agregar_calificación(yo, nota) {
+        yo.calificaciones.agregar(nota)
+        decir("Calificación agregada: {nota}")
+    }
+    
+    function calcular_promedio(yo) {
+        si tamaño(yo.calificaciones) == 0 {
+            give 0.0
+        }
+        
+        suma = 0
+        para nota en yo.calificaciones {
+            suma = suma + nota
+        }
+        
+        dar suma / tamaño(yo.calificaciones)
+    }
+    
+    función estado(yo) {
+        promedio = yo.calcular_promedio()
+        
+        si promedio >= 90 {
+            dar "Excelente"
+        } además promedio >= 80 {
+            dar "Bueno"
+        } además promedio >= 70 {
+            give "Regular"
+        } sino {
+            give "Necesita mejorar"
+        }
+    }
+}
+
+inicio {
+    decir("=== Sistema de Personas y Estudiantes ===\n")
+    
+    -- Crear persona
+    persona1 = Persona{
+        nombre: "Ana García",
+        edad: 25,
+        ciudad: "Madrid"
+    }
+    
+    persona1.presentarse()
+    say("")
+    persona1.cumpleaños()
+    
+    decir("\n¿Es mayor de edad? {persona1.es_mayor()}")
+    
+    say("\n" + "=" + "*40")
+    
+    -- Crear estudiante
+    estudiante1 = Estudiante{
+        nombre: "Carlos López",
+        carrera: "Ingeniería de Software",
+        semestre: 3
+    }
+    
+    decir("\nEstudiante: {estudiante1.nombre}")
+    decir("Carrera: {estudiante1.carrera}")
+    decir("Semestre: {estudiante1.semestre}")
+    
+    say("")
+    estudiante1.agregar_calificación(85)
+    estudiante1.agregar_calificación(92)
+    estudiante1.agregar_calificación(78)
+    estudiante1.agregar_calificación(88)
+    
+    promedio = estudiante1.calcular_promedio()
+    estado = estudiante1.estado()
+    
+    say("\nPromedio: {promedio}")
+    decir("Estado: {estado}")
+}

@@ -1,0 +1,35 @@
+-- Mi primera web con Mesa - SIN SABER HTML
+
+pagina("Mi Página", "oceano")
+
+navbar("Mi Sitio", [["Inicio", "/"], ["About", "/about"], ["Contacto", "/contacto"]])
+
+titulo("Bienvenido a mi Web")
+texto("Esta página fue creada con Mesa Language, sin escribir ni una línea de HTML!")
+texto("Es un pagina de ejemplo de Mesa Language de la carpeta examples. A QUE IMPRESIONA")
+
+separador()
+
+tarjeta("¿Qué es Mesa?", "Mesa es un lenguaje de programación bilingüe que te permite crear webs sin saber HTML.")
+
+tarjeta("Características", "Simple, potente, y en español!")
+
+fila_inicio()
+    columna_inicio()
+        tarjeta("Fácil", "Aprende en minutos")
+    columna_fin()
+    columna_inicio()
+        tarjeta("Potente", "HTTP, JSON, DB integrados")
+    columna_fin()
+    columna_inicio()
+        tarjeta("Bilingüe", "Español e inglés")
+    columna_fin()
+fila_fin()
+
+lista(["Crear webs", "APIs REST", "Bases de datos", "Y mucho más!"])
+
+alerta("Mesa es LA CABRA 🐐", "exito")
+
+footer("Hecho con Mesa Language - 2026")
+
+web_servir(8080)

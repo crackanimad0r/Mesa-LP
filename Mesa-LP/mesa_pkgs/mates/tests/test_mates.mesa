@@ -1,0 +1,9 @@
+usar "mates"
+usar "test"
+
+es_igual(factorial(5), 120, "factorial(5) == 120")
+es_igual(fibonacci(6), 8, "fibonacci(6) == 8")
+es_igual(es_par(4), verdadero, "4 es par")
+es_igual(es_impar(5), verdadero, "5 es impar")
+
+decir("✓ Todo correcto en la librería mates")

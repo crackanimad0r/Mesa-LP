@@ -1,0 +1,50 @@
+-- Paquete: grafico v1.0.0
+-- Gráficos ASCII y tablas en terminal
+
+funcion barra(valor, maximo, ancho) {
+    lleno = entero((valor / maximo) * ancho)
+    vacio_n = ancho - lleno
+    dar "[" + "█" * lleno + "░" * vacio_n + "] " + texto(valor)
+}
+
+funcion tabla(cabeceras, filas) {
+    -- Calcular anchos de columnas
+    anchos = []
+    para i en rango(tamaño(cabeceras)) {
+        ancho = tamaño(cabeceras[i])
+        para fila en filas {
+            si tamaño(texto(fila[i])) > ancho {
+                ancho = tamaño(texto(fila[i]))
+            }
+        }
+        anchos = anchos + [ancho + 2]
+    }
+    -- Separador
+    sep = "+"
+    para a en anchos { sep = sep + "-" * a + "+" }
+    -- Cabecera
+    decir(sep)
+    cab = "|"
+    para i en rango(tamaño(cabeceras)) {
+        cab = cab + " " + cabeceras[i] + " " * (anchos[i] - tamaño(cabeceras[i]) - 1) + "|"
+    }
+    decir(cab)
+    decir(sep)
+    -- Filas
+    para fila en filas {
+        linea = "|"
+        para i en rango(tamaño(fila)) {
+            celda = texto(fila[i])
+            linea = linea + " " + celda + " " * (anchos[i] - tamaño(celda) - 1) + "|"
+        }
+        decir(linea)
+    }
+    decir(sep)
+}
+
+funcion titulo_ascii(texto_t) {
+    borde = "═" * (tamaño(texto_t) + 4)
+    decir("╔" + borde + "╗")
+    decir("║  " + texto_t + "  ║")
+    decir("╚" + borde + "╝")
+}

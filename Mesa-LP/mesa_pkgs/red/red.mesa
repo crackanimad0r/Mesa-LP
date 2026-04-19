@@ -1,0 +1,38 @@
+-- Paquete: red v1.0.0
+-- Utilidades de red
+
+funcion formatear_ip(ip) {
+    partes = split(ip, ".")
+    si tamaño(partes) != 4 { dar falso }
+    para p en partes {
+        n = entero(p)
+        si n < 0 o n > 255 { dar falso }
+    }
+    dar verdadero
+}
+
+funcion mascara_a_cidr(mascara) {
+    partes = split(mascara, ".")
+    bits = 0
+    para p en partes {
+        n = entero(p)
+        mientras n > 0 {
+            bits += n % 2
+            n = n / 2
+        }
+    }
+    dar bits
+}
+
+funcion url_encode(texto_url) {
+    resultado = ""
+    seguros = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_.~"
+    para c en texto_url {
+        si contiene(seguros, c) {
+            resultado = resultado + c
+        } sino {
+            resultado = resultado + "%" + texto(ord(c))
+        }
+    }
+    dar resultado
+}

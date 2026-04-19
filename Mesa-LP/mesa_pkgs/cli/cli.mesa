@@ -1,0 +1,28 @@
+-- Paquete: cli v1.0.0
+-- Utilidades de interfaz de línea de comandos
+
+funcion exito(msg) { decir("✅ " + msg) }
+funcion error_cli(msg) { decir("❌ " + msg) }
+funcion advertencia(msg) { decir("⚠️  " + msg) }
+funcion info(msg) { decir("ℹ️  " + msg) }
+
+funcion preguntar_si_no(pregunta) {
+    respuesta = preguntar(pregunta + " [s/n]: ")
+    dar respuesta == "s" o respuesta == "si" o respuesta == "sí"
+}
+
+funcion seleccionar(titulo, opciones) {
+    decir("\n" + titulo)
+    para i en rango(tamaño(opciones)) {
+        decir("  " + texto(i + 1) + ". " + opciones[i])
+    }
+    eleccion = entero(preguntar("Selecciona (1-" + texto(tamaño(opciones)) + "): ")) - 1
+    dar opciones[eleccion]
+}
+
+funcion progreso(actual, total, label) {
+    pct = entero((actual / total) * 100)
+    barras = entero(pct / 5)
+    barra = "█" * barras + "░" * (20 - barras)
+    imprimir("\r" + label + " [" + barra + "] " + texto(pct) + "%")
+}

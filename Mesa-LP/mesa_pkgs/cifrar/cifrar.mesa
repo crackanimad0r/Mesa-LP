@@ -1,0 +1,28 @@
+-- Paquete: cifrar v1.2.0
+-- Cifrado y seguridad (usa funciones nativas de Mesa)
+
+funcion hash_seguro(texto_orig) {
+    dar sha256(texto_orig)
+}
+
+funcion verificar_hash(texto_orig, hash_guardado) {
+    dar sha256(texto_orig) == hash_guardado
+}
+
+funcion generar_token(longitud_t) {
+    chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+    token = ""
+    repetir longitud_t {
+        idx = randint(0, tamaño(chars) - 1)
+        token = token + chars[idx]
+    }
+    dar token
+}
+
+funcion base64_encode(texto_b) {
+    dar base64_codificar(texto_b)
+}
+
+funcion base64_decode(texto_b) {
+    dar base64_decodificar(texto_b)
+}

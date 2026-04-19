@@ -1,0 +1,6 @@
+funcion sumar(a, b) {
+    dar a + b
+}
+
+r = sumar(5, 10.5)
+decir(r)

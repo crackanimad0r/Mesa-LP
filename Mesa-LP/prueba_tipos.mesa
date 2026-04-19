@@ -1,0 +1,7 @@
+-- Prueba de Resistencia: Tipado Estático Progresivo
+
+texto_secreto: str = "Mi tesoro"
+-- Intento malicioso o erróneo de asignarle un número
+texto_secreto = 500
+
+decir(texto_secreto)

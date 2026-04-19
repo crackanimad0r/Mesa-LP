@@ -1,0 +1,47 @@
+-- MesaOS Grafico v1.0 --
+IMAGEN = "mesa-os/grafico.img"
+asm = []
+
+x86_nuevo()
+modo_video(0x13) -- 320x200 256 colores
+
+etiqueta("bucle")
+  leer_puerto(0x60) -- Leer teclado (scancode en AL)
+  
+  -- Si pulsas 'Q' (0x10), salir/parar
+  cmp_al(0x10)
+  si_igual("fin")
+
+  -- Si pulsas 'W' (0x11), dibujar pixel azul en el centro
+  cmp_al(0x11)
+  si_igual("azul")
+
+  -- Si pulsas 'E' (0x12), dibujar pixel rojo en el centro
+  cmp_al(0x12)
+  si_igual("rojo")
+
+  jmp_a("bucle")
+
+etiqueta("azul")
+  vram_escribir(32000, 1) -- Color 1 (azul) en el medio aprox
+  jmp_a("bucle")
+
+etiqueta("rojo")
+  vram_escribir(32000, 4) -- Color 4 (rojo) en el medio aprox
+  jmp_a("bucle")
+
+etiqueta("fin")
+  hlt()
+  jmp_a("fin")
+
+decir("Compilando Grafico OS...")
+codigo = compilar(asm)
+tam = len(codigo)
+decir("Tamaño code: {tam} bytes")
+
+boot = bootsector(codigo)
+crear_directorio("mesa-os")
+archivo_escribir_bytes(IMAGEN, boot)
+
+decir("Lanzando QEMU Grafico...")
+lanzar_qemu(IMAGEN)
