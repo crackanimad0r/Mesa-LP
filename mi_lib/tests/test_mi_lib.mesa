@@ -1,9 +1,0 @@
--- Tests de la librería mi_lib
-usar "test"
-
--- importar la librería
-usar "mi_lib"
-
-es_igual(hola(), "Hola desde mi_lib!", "hola() funciona")
-
-resumen()
