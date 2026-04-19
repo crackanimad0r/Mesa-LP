@@ -32,6 +32,8 @@ alerta("Mesa es LA CABRA 🐐", "exito")
 
 web_servir(8080)
 ```
+# GRAN DISCLAIMER
+Ahora mismo la creacion de OS esta muy bugueada por culpa de la transicion a Rust y otros cambios. Espero poder solucionarlo en la 4.1
 
 ## 💻 Bajo Nivel: Creación de Sistemas (OS Mode)
 
@@ -99,6 +101,7 @@ La documentación completa se encuentra en [DOCS.md](./docs/DOCS.md). Incluye de
 ## 🐐 Autor
 Creado por **Crackanimador**. Mesa v4.0.0 es la culminación de un proceso de búsqueda de soberanía tecnológica y potencia bilingüe.
 
+
 ## NOTA IMPORTANTE:
 En el desarrollo de este lenguaje, usé IA para la programación, ya que todavía no tengo todos los conocimientos necesarios (estoy todavía en educación obligatoria, por favor).
 
@@ -141,6 +144,8 @@ alert(“Mesa is THE GOAT 🐐”, “success”)
 
 serve_web(8080)
 ```
+# MAJOR DISCLAIMER
+Currently, OS creation is very buggy due to the transition to Rust and other changes. I hope to fix this in version 4.1
 
 ## 💻 Low Level: System Creation (OS Mode)
 
