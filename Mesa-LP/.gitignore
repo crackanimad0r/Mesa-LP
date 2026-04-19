@@ -1,0 +1,13 @@
+# Binarios y objetos
+benchmark
+test_comp
+mesa
+*.o
+*.img
+*.zip
+
+# Carpetas de salida
+mesa_output/
+target/
+.firebaserc
+firebase.json
