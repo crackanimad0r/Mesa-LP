@@ -1,0 +1,85 @@
+🐐 Mesa Language v2.3.0 - ECOSYSTEM UPDATE
+Mesa es un lenguaje de programación bilingüe y soberano diseñado para romper las barreras entre el desarrollo de alto nivel y la ingeniería de sistemas. Con una sintaxis humana y un motor de Bytecode optimizado, Mesa te permite construir desde servidores web modernos hasta núcleos de sistemas operativos (Kernels) de 512 bytes.
+
+🚀 ¿Por qué Mesa?
+Soberanía Total: +200 funciones nativas. Olvídate de npm install o pip install. HTTP, Criptografía, Bases de Datos y JSON vienen integrados.
+
+Bilingüe por Diseño: Programa en Español o Inglés sin alias ni parches. decir() es tan potente como say().
+
+De la Web al Hierro: Escribe una aplicación web completa en 20 líneas o baja al nivel de los registros x86 para crear tu propio OS.
+
+Compilador x86 Nativo: Incluye x86.py, un compilador que transforma tu código Mesa en binarios reales para hardware real.
+
+🎨 Alto Nivel: Web sin HTML
+Mesa elimina la frustración del desarrollo web. No más etiquetas infinitas, solo lógica pura (Tranquilos, tambien se puede usar HTML en caso de mayor conocimiento o personalizacion).
+
+Fragmento de código
+-- Una web profesional en segundos
+pagina("Mesa World", "oceano")
+
+navbar("Mesa", [["Inicio", "/"], ["Docs", "/docs"]])
+
+titulo("Bienvenido al Futuro")
+texto("Crea webs potentes sin escribir ni una línea de HTML.")
+
+tarjeta("Soberanía", "Mesa no depende de librerías externas.")
+
+alerta("Mesa es LA CABRA 🐐", "exito")
+
+web_servir(8080)
+💻 Bajo Nivel: Creación de Sistemas (OS Mode)
+Mesa es capaz de hablarle directamente al procesador. Aquí tienes un sector de arranque (Bootsector) funcional escrito en Mesa:
+
+Fragmento de código
+-- plantilla_os.mesa
+asm = x86_nuevo()
+iniciar_boot(asm)
+modo_video(asm, 0x03)
+limpiar_pantalla(asm)
+
+apuntar(asm, 0x7C00, "Hola desde MesaOS")
+llamar(asm, "print_str")
+
+-- Compilar a binario real de 512 bytes
+codigo = compilar(asm)
+boot = bootsector(codigo)
+archivo_escribir_bytes("mesa.img", boot)
+🛠️ Características Principales
+🌐 Web Stack: Servidor HTTP, Cliente, y generador de interfaces integrado.
+
+🔐 Seguridad: Implementación nativa de SHA256, HMAC y gestión de contraseñas.
+
+🗄️ Persistencia: Soporte directo para SQLite y archivos CSV/JSON.
+
+⚡ Concurrencia: Sistema de tareas y canales para procesamiento en paralelo.
+
+🔧 Low-Level: Acceso a registros x86, gestión de memoria manual (reservar/liberar) y punteros.
+
+📦 Instalación Rápida
+Para instalar Mesa en tu sistema Linux (basado en Debian/Ubuntu):
+
+Bash
+curl -s https://raw.githubusercontent.com/tu-usuario/mesa-lang/main/install.sh | bash
+O clona el repositorio y compila manualmente:
+
+Bash
+git clone https://github.com/tu-usuario/mesa-lang.git
+cd mesa-lang
+./install.sh
+📦 Ecosistema Mesa (v2.3.0)
+Mesa ahora cuenta con un potente gestor de paquetes y herramientas de productividad:
+
+- **mesa instalar <paquete>**: Instala librerías desde el registro oficial o local.
+- **mesa nuevo <tipo> <nombre>**: Crea proyectos (web, libreria, os, proyecto) al instante.
+- **mesa publicar <carpeta>**: Comparte tu propio código registrándolo en tu entorno local.
+
+📖 Documentación
+La documentación completa de +2000 líneas se encuentra en el archivo DOCS.md. Incluye ejemplos detallados de cada una de las 200+ funciones nativas.
+
+🐐 Autor
+Creado por Crackanimador. El ecosistema v2.3.0 permite finalmente compartir y reutilizar código de forma soberana.
+
+Contribuir
+Si quieres ayudar a que Mesa sea el lenguaje definitivo, ¡los Pull Requests son bienvenidos! Revisa nuestra sección de tareas pendientes en el Roadmap.
+
+Mesa Language - Codifica con Poder. Codifica en tu Idioma.

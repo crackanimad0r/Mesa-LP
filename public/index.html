@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mesa Lang - Registro de Paquetes</title>
+    <style>
+        body { background: #0d0221; color: #00ffff; font-family: sans-serif; padding: 20px; }
+        .card { background: #1a0545; border: 1px solid #ff00ff; padding: 20px; margin-bottom: 20px; border-radius: 8px; }
+        h1 { color: #ff00ff; text-align: center; }
+        pre { background: #111; color: #0f0; padding: 10px; border-radius: 5px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <div style="max-width: 800px; margin: 0 auto;">
+        <h1>Registro Oficial de Mesa</h1>
+        <p style="text-align: center;">Bienvenido al registro web de paquetes comunitarios.</p>
+
+        <div class="card">
+            <h2>mi_lib <span style="font-size:0.5em;color:#ff00ff;">v1.0.0 por <tu nombre></span></h2>
+            <p><i><descripción de tu librería></i></p>
+            <p>Para instalar en Mesa v2.3.0+:</p>
+            <pre><code class="install-cmd" data-name="mi_lib"></code></pre>
+        </div>
+        
+        <div class="card">
+            <h2>eml <span style="font-size:0.5em;color:#ff00ff;">v1.0.0 por <tu nombre></span></h2>
+            <p><i><descripción de tu librería></i></p>
+            <p>Para instalar en Mesa v2.3.0+:</p>
+            <pre><code class="install-cmd" data-name="eml"></code></pre>
+        </div>
+        
+        <div class="card">
+            <h2>mates <span style="font-size:0.5em;color:#ff00ff;">v1.0.0 por <tu nombre></span></h2>
+            <p><i><descripción de tu librería></i></p>
+            <p>Para instalar en Mesa v2.3.0+:</p>
+            <pre><code class="install-cmd" data-name="mates"></code></pre>
+        </div>
+        
+        <div class="card">
+            <h2>utiles <span style="font-size:0.5em;color:#ff00ff;">v1.0.0 por <tu nombre></span></h2>
+            <p><i><descripción de tu librería></i></p>
+            <p>Para instalar en Mesa v2.3.0+:</p>
+            <pre><code class="install-cmd" data-name="utiles"></code></pre>
+        </div>
+        
+    </div>
+    <script>
+        const origin = window.location.origin;
+        document.querySelectorAll('.install-cmd').forEach(el => {
+            const name = el.getAttribute('data-name');
+            el.innerHTML = `mesa instalar ${name} --url ${origin}/${name}.zip`;
+        });
+    </script>
+</body>
+</html>

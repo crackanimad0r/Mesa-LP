@@ -1,0 +1,8 @@
+{
+  "nombre": "mi_proyecto",
+  "version": "1.0.0",
+  "descripcion": "Mi proyecto Mesa",
+  "autor": "",
+  "entrada": "src/main.mesa",
+  "dependencias": []
+}

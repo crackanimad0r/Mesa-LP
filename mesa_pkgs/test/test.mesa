@@ -1,0 +1,35 @@
+-- Paquete: test v1.0.0
+-- Framework de testing
+
+_tests_ok = 0
+_tests_fallo = 0
+
+funcion es_igual(a, b, nombre) {
+    si a == b {
+        decir("  ✅ " + nombre)
+        _tests_ok += 1
+    } sino {
+        decir("  ❌ " + nombre + " → esperado: " + texto(b) + ", obtenido: " + texto(a))
+        _tests_fallo += 1
+    }
+}
+
+funcion es_verdadero(cond, nombre) {
+    si cond {
+        decir("  ✅ " + nombre)
+        _tests_ok += 1
+    } sino {
+        decir("  ❌ " + nombre + " → esperaba verdadero")
+        _tests_fallo += 1
+    }
+}
+
+funcion es_falso(cond, nombre) {
+    es_verdadero(no cond, nombre)
+}
+
+funcion resumen() {
+    total = _tests_ok + _tests_fallo
+    decir("\n📊 Tests: " + texto(total) + " | ✅ " + texto(_tests_ok) + " | ❌ " + texto(_tests_fallo))
+    dar _tests_fallo == 0
+}

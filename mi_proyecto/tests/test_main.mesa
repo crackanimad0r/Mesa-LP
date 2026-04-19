@@ -1,0 +1,7 @@
+-- Tests de mi_proyecto
+usar "test"
+
+es_igual(sumar(2, 3), 5, "suma básica")
+es_igual(restar(10, 4), 6, "resta básica")
+
+resumen()

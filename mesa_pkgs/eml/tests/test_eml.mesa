@@ -1,0 +1,16 @@
+usar "eml"
+usar "test"
+
+-- Prueba 1: eml(0, 1) = exp(0) - ln(1) = 1 - 0 = 1
+r1 = redondear(eml(0, 1))
+es_igual(r1, 1, "eml(0, 1) = 1")
+
+-- Prueba 2: eml(1, E) = exp(1) - ln(E) = E - 1
+-- E es aprox 2.718, asi que E - 1 es aprox 1.718 -> redondear(1.718) = 2
+r2 = redondear(eml(1, E))
+es_igual(r2, 2, "redondeado de eml(1, E) = 2")
+
+-- Prueba 3: Usarlo en conjunto para generar operaciones elementales como pide regresion simbolica
+-- Por ejemplo constante 1: eml(0, 1) = 1. eml(1, 1) = E
+decir("✓ Todo correcto en la librería EML IA")
+

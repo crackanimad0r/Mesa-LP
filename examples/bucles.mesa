@@ -1,0 +1,42 @@
+-- Ejemplos de bucles bilingües
+
+inicio {
+    decir("=== Bucles / Loops ===\n")
+    
+    -- Repetir simple
+    decir("Repetir 3 veces:")
+    repetir 3 {
+        decir("  ¡Hola!")
+    }
+    
+    say("\nRepeat with index:")
+    repeat 5 as i {
+        say("  Iteration {i}")
+    }
+    
+    -- For loop
+    decir("\nFor loop en lista:")
+    frutas = ["manzana", "banana", "naranja"]
+    para fruta en frutas {
+        decir("  - {fruta}")
+    }
+    
+    say("\nFor loop with index:")
+    for fruta, i in frutas {
+        say("  {i}: {fruta}")
+    }
+    
+    -- While loop
+    decir("\nWhile loop:")
+    contador = 0
+    mientras contador < 3 {
+        decir("  Contador: {contador}")
+        contador = contador + 1
+    }
+    
+    -- Rango
+    say("\nRange loop:")
+    for i in 0..5 {
+        say("  Number: {i}")
+    }
+}

@@ -1,0 +1,9 @@
+-- Tests de la librería lib_remota
+usar "test"
+
+-- importar la librería
+usar "lib_remota"
+
+es_igual(hola(), "Hola desde lib_remota!", "hola() funciona")
+
+resumen()

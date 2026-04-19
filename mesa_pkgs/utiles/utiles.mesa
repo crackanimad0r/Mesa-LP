@@ -1,0 +1,27 @@
+-- Librería: utiles
+-- Utilidades comunes para proyectos Mesa
+
+funcion saludar(nombre) {
+    decir("¡Bienvenido al ecosistema Mesa v2.3.0, " + nombre + "!")
+}
+
+funcion presentar_lista(lst, titulo) {
+    decir("--- " + titulo + " ---")
+    para item en lst {
+        decir("  > " + texto(item))
+    }
+    decir("-------------------")
+}
+
+funcion repetir_texto(txt, veces) {
+    resultado = ""
+    para i en 0..veces {
+        resultado = resultado + txt
+    }
+    dar resultado
+}
+
+-- Aliases en Inglés
+funcion greet(name) { dar saludar(name) }
+funcion present_list(lst, title) { dar presentar_lista(lst, title) }
+funcion repeat_text(txt, times) { dar repetir_texto(txt, times) }

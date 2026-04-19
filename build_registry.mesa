@@ -1,0 +1,14 @@
+pagina("Mesa Lang - Registro de Paquetes", "cyberpunk")
+
+titulo("Registro Oficial de Mesa", 1)
+texto("Bienvenido al registro de paquetes impulsado por la comunidad.")
+
+tarjeta_inicio("lib_remota v1.0.0")
+texto("Una librería de prueba para probar la funcionalidad de descargar librerías completas via URL directa en Mesa v2.3.0.", "cursiva")
+html("<br>")
+
+html("<pre style='background:#111; color:#0f0; padding:10px; border-radius:5px;'><code>mesa instalar lib_remota --url https://<TU_DOMINIO>.web.app/lib_remota.zip</code></pre>")
+
+tarjeta_fin()
+
+web_guardar("public/index.html")

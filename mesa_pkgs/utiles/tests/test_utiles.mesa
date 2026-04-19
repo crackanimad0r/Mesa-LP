@@ -1,0 +1,8 @@
+usar "utiles"
+usar "test"
+
+es_igual(repetir_texto("A", 3), "AAA", "Repetir texto A 3 veces")
+saludar("Mesa")
+presentar_lista([1, 2, 3], "Numeros")
+
+decir("✓ Todo correcto en la librería utiles")

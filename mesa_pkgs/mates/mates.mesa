@@ -1,0 +1,30 @@
+-- Librería: mates
+-- Colección de funciones matemáticas avanzadas
+
+funcion factorial(n) {
+    si n <= 1 {
+        dar 1
+    }
+    dar n * factorial(n - 1)
+}
+
+funcion fibonacci(n) {
+    si n <= 1 {
+        dar n
+    }
+    dar fibonacci(n - 1) + fibonacci(n - 2)
+}
+
+funcion es_par(n) {
+    dar (n % 2) == 0
+}
+
+funcion es_impar(n) {
+    dar (n % 2) != 0
+}
+
+-- Aliases en Inglés
+funcion fact(n) { dar factorial(n) }
+funcion fib(n) { dar fibonacci(n) }
+funcion is_even(n) { dar es_par(n) }
+funcion is_odd(n) { dar es_impar(n) }

@@ -1,0 +1,15 @@
+-- Ejemplo mezclando español e inglés
+inicio {
+    nombre = "Mesa"
+    versión = 2.0
+    
+    decir("Lenguaje: {nombre}")
+    say("Version: {versión}")
+    
+    -- Condicional bilingüe
+    si versión >= 2.0 {
+        decir("✅ Versión moderna")
+    } sino {
+        say("⚠️  Old version")
+    }
+}

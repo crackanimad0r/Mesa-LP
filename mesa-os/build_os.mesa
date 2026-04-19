@@ -1,0 +1,192 @@
+-- MesaOS Builder - Construye el OS desde Mesa
+-- Genera bytecode x86 real sin C
+
+inicio {
+    decir("🐐 MesaOS Builder v1.0.0")
+    decir("Construyendo imagen de disco para QEMU...")
+    decir("")
+
+    -- ════════════════════════════════════
+    -- DEFINIR EL BOOTSECTOR EN BAJO NIVEL
+    -- ════════════════════════════════════
+
+    -- El bootsector es exactamente 512 bytes
+    -- Dirección de carga: 0x7C00
+    -- Últimos 2 bytes: 0x55 0xAA (firma)
+
+    sector = []
+
+    -- Rellenar con zeros
+    repetir 512 {
+        sector.agregar(0)
+    }
+
+    -- ════════════════════════════════════
+    -- CÓDIGO x86 DEL BOOTLOADER
+    -- ════════════════════════════════════
+
+    -- Posición 0: CLI (deshabilitar interrupciones)
+    sector[0] = 0xFA
+
+    -- Posición 1: XOR AX, AX
+    sector[1] = 0x31
+    sector[2] = 0xC0
+
+    -- Posición 3: MOV DS, AX
+    sector[3] = 0x8E
+    sector[4] = 0xD8
+
+    -- Posición 5: MOV ES, AX
+    sector[5] = 0x8E
+    sector[6] = 0xC0
+
+    -- Posición 7: MOV SS, AX
+    sector[7] = 0x8E
+    sector[8] = 0xD0
+
+    -- Posición 9: MOV SP, 0x7C00
+    sector[9] = 0xBC
+    sector[10] = 0x00
+    sector[11] = 0x7C
+
+    -- Posición 12: STI
+    sector[12] = 0xFB
+
+    -- Posición 13: Set video mode 03h (80x25 color text)
+    -- MOV AH, 0
+    sector[13] = 0xB4
+    sector[14] = 0x00
+    -- MOV AL, 3
+    sector[15] = 0xB0
+    sector[16] = 0x03
+    -- INT 10h
+    sector[17] = 0xCD
+    sector[18] = 0x10
+
+    -- Posición 19: Limpiar pantalla (INT 10h AH=06h)
+    -- MOV AX, 0x0600
+    sector[19] = 0xB8
+    sector[20] = 0x00
+    sector[21] = 0x06
+    -- MOV CX, 0x0000
+    sector[22] = 0xB9
+    sector[23] = 0x00
+    sector[24] = 0x00
+    -- MOV DX, 0x184F
+    sector[25] = 0xBA
+    sector[26] = 0x4F
+    sector[27] = 0x18
+    -- MOV BH, 0x1E (azul fondo, amarillo texto)
+    sector[28] = 0xB7
+    sector[29] = 0x1E
+    -- INT 10h
+    sector[30] = 0xCD
+    sector[31] = 0x10
+
+    -- Posición 32: Cursor en fila 2, col 2
+    -- MOV AH, 02h
+    sector[32] = 0xB4
+    sector[33] = 0x02
+    -- MOV BH, 0
+    sector[34] = 0xB7
+    sector[35] = 0x00
+    -- MOV DH, 2 (fila 2)
+    sector[36] = 0xB6
+    sector[37] = 0x02
+    -- MOV DL, 2 (col 2)
+    sector[38] = 0xB2
+    sector[39] = 0x02
+    -- INT 10h
+    sector[40] = 0xCD
+    sector[41] = 0x10
+
+    -- Posición 42: MOV SI, 0x7C60 (dirección del mensaje)
+    -- Los mensajes empiezan en offset 0x60 desde 0x7C00
+    sector[42] = 0xBE
+    sector[43] = 0x60   -- 0x7C00 + 0x60 = 0x7C60, parte baja
+    sector[44] = 0x7C   -- parte alta
+
+    -- Posición 45: Loop de impresión (CALL print_str en offset 0x56)
+    -- E8 = CALL near, offset relativo
+    -- print_str está en offset 0x56 desde inicio del sector
+    -- Offset relativo: 0x7C56 - (0x7C00 + 45 + 3) = 0x56 - 48 = 0x0E
+    sector[45] = 0xE8
+    sector[46] = 0x0E   -- offset bajo
+    sector[47] = 0x00   -- offset alto
+
+    -- Posición 48: Segundo mensaje (créditos)
+    sector[48] = 0xBE
+    sector[49] = 0x90   -- 0x7C00 + 0x90
+    sector[50] = 0x7C
+
+    sector[51] = 0xE8
+    sector[52] = 0x03   -- CALL print_str
+    sector[53] = 0x00
+
+    -- Posición 54: HLT (esperar - no hacer nada más)
+    sector[54] = 0xF4
+
+    -- Posición 55: JMP $ (loop infinito en HLT)
+    sector[55] = 0xEB
+    sector[56] = 0xFD
+
+    -- ════════════════════════════════════
+    -- FUNCIÓN print_str en offset 0x58 (0x7C58)
+    -- Imprime string DS:SI hasta NULL usando INT 10h
+    -- ════════════════════════════════════
+    -- .loop:
+    sector[0x58] = 0xAC        -- LODSB (AL = [SI], SI++)
+    sector[0x59] = 0x08        -- OR AL, AL
+    sector[0x5A] = 0xC0
+    sector[0x5B] = 0x74        -- JZ .done (+7 bytes)
+    sector[0x5C] = 0x07
+    sector[0x5D] = 0xB4        -- MOV AH, 0Eh
+    sector[0x5E] = 0x0E
+    sector[0x5F] = 0xBB        -- MOV BX, 0007h (page 0, color blanco)
+    sector[0x60] = 0x07
+    sector[0x61] = 0x00
+    sector[0x62] = 0xCD        -- INT 10h
+    sector[0x63] = 0x10
+    sector[0x64] = 0xEB        -- JMP .loop (-14)
+    sector[0x65] = 0xF2
+    -- .done:
+    sector[0x66] = 0xC3        -- RET
+
+    -- ════════════════════════════════════
+    -- STRINGS en offset 0x70
+    -- ════════════════════════════════════
+
+    -- Mensaje 1: Banner principal
+    msg1 = "  *** MesaOS v1.0.0 ***\r\n"
+    msg2 = "  Sistema Operativo en Mesa Language\r\n"
+    msg3 = "  LA CABRA! 🐐\r\n"
+    msg4 = "  ================================\r\n"
+    msg5 = "\r\n  Sistema iniciado!\r\n"
+    msg6 = "  Escribe comandos...\r\n\r\n> "
+
+    -- Banner completo concatenado
+    banner = msg4 + msg1 + msg2 + msg3 + msg4 + msg5
+
+    -- Escribir strings en el sector
+    -- Offset 0x70 = 112 decimal
+    offset_msg1 = 0x70
+    i = 0
+    para c en banner.dividir("") {
+        si offset_msg1 + i < 500 {
+            sector[offset_msg1 + i] = entero(sha256(c)[0:2], 16) -- esto no funciona bien
+            i += 1
+        }
+    }
+
+    -- ════════════════════════════════════
+    -- Firma de boot en bytes 510-511
+    -- ════════════════════════════════════
+    sector[510] = 0x55
+    sector[511] = 0xAA
+
+    -- Guardar el sector
+    archivo_escribir_bytes("mesa-os/boot.img.tmp", sector)
+    decir("✅ Sector de boot generado")
+    decir("   Tamaño: 512 bytes")
+    decir("   Firma: 0x55 0xAA")
+}

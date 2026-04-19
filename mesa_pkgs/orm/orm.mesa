@@ -1,0 +1,30 @@
+-- Paquete: orm v1.0.0
+-- ORM ligero para SQLite
+
+funcion crear_tabla(db, nombre, campos) {
+    cols = []
+    para c en campos {
+        cols = cols + [c[0] + " " + c[1]]
+    }
+    sql = "CREATE TABLE IF NOT EXISTS " + nombre + " (" + join(", ", cols) + ")"
+    db_ejecutar(db, sql)
+}
+
+funcion insertar(db, tabla, datos) {
+    columnas = join(", ", claves(datos))
+    valores_sql = join(", ", ["?" ] * tamaño(datos))
+    sql = "INSERT INTO " + tabla + " (" + columnas + ") VALUES (" + valores_sql + ")"
+    db_ejecutar(db, sql, valores(datos))
+}
+
+funcion buscar_todo(db, tabla) {
+    dar db_consulta(db, "SELECT * FROM " + tabla)
+}
+
+funcion buscar_uno(db, tabla, campo, valor) {
+    dar db_consulta(db, "SELECT * FROM " + tabla + " WHERE " + campo + " = ?", [valor])
+}
+
+funcion eliminar(db, tabla, campo, valor) {
+    db_ejecutar(db, "DELETE FROM " + tabla + " WHERE " + campo + " = ?", [valor])
+}

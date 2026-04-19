@@ -1,0 +1,10 @@
+-- mi_proyecto — Proyecto Mesa v1.0.0
+-- Punto de entrada principal
+
+decir("🐐 mi_proyecto iniciado!")
+
+funcion saludar(nombre) {
+    decir("Hola, {nombre}!")
+}
+
+saludar("Mundo")

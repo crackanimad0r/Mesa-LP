@@ -1,0 +1,16 @@
+{
+  "fecha": "2025-01-01",
+  "total": 15000,
+  "productos": [
+    {
+      "nombre": "Widget A",
+      "cantidad": 50,
+      "precio": 100
+    },
+    {
+      "nombre": "Widget B",
+      "cantidad": 30,
+      "precio": 200
+    }
+  ]
+}

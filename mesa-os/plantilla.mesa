@@ -1,0 +1,42 @@
+LOAD_ADDR = 0x7C00
+IMAGEN = "mesa-os/plantilla.img"
+
+asm = x86_nuevo()
+
+salto_lejos(asm, 0, "comenzar")
+
+etiqueta(asm, "comenzar")
+iniciar_boot(asm)
+modo_video(asm, 3)
+
+apuntar(asm, LOAD_ADDR, "msg")
+llamar(asm, "print_str")
+
+etiqueta(asm, "bucle")
+
+-- Lectura + Eco inline usando lista()
+x86_bytes(asm, lista(
+    180, 0,    -- mov ah, 0
+    205, 22,   -- int 16h   ; espera tecla, ASCII en AL
+
+    180, 14,   -- mov ah, 0Eh
+    205, 16    -- int 10h   ; imprime AL
+))
+
+jmp_a(asm, "bucle")
+
+insertar_print_str(asm)
+cadena(asm, "msg", "MesaOS> ")
+
+decir("Compilando...")
+codigo = compilar(asm)
+
+-- Diagnostico de bytes
+decir("Bytes generados:")
+decir(codigo)
+
+boot = bootsector(codigo)
+crear_directorio("mesa-os")
+archivo_escribir_bytes(IMAGEN, boot)
+decir("Imagen generada correctamente")
+lanzar_qemu(IMAGEN)

@@ -1,0 +1,26 @@
+-- Paquete: markdown v1.0.0
+-- Parser básico de Markdown a HTML
+
+funcion encabezado(texto_md) {
+    si texto_md[0..2] == "###" { dar "<h3>" + texto_md[3..] + "</h3>" }
+    si texto_md[0..2] == "## " { dar "<h2>" + texto_md[3..] + "</h2>" }
+    si texto_md[0] == "#" { dar "<h1>" + texto_md[2..] + "</h1>" }
+    dar "<p>" + texto_md + "</p>"
+}
+
+funcion negrita(t) {
+    -- Reemplaza **texto** por <strong>texto</strong>
+    dar replace(replace(t, "**", "<strong>", 1), "**", "</strong>", 1)
+}
+
+funcion enlace_md(texto_l, url_l) {
+    dar "<a href=\"" + url_l + "\">" + texto_l + "</a>"
+}
+
+funcion lista_md(items) {
+    html = "<ul>"
+    para item en items {
+        html = html + "<li>" + item + "</li>"
+    }
+    dar html + "</ul>"
+}

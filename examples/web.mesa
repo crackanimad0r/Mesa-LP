@@ -1,0 +1,25 @@
+pagina("El Cadiz va de la diarrea", "oscuro")
+
+texto("No se la verdad, pero esto es mio asi que...")
+titulo("DISPLAIMER: No apto para Valladolistas ni Cadistas que se puedan ofender (Aunque lo leereis igual, asi que)")
+
+tarjeta("¿Porque el Cadiz CF va de la diarrea?",)
+lista(["A. Porque juegan de la %&%$$%&", "B. Porque no juegan", "C. Porque cuando menos te lo esperas se durmieron", "D. Vizcaino dimision", "E. Todas son correctas"])
+tarjeta("Equipos que le ganarian al Cadiz CF:")
+fila_inicio()
+    columna_inicio()
+        tarjeta("Todos, son malisimos")
+    columna_fin()
+    columna_inicio()
+        tarjeta("Los Petisuis, estan mejor que el Cadiz.")
+    columna_fin()
+    columna_inicio()
+        tarjeta("Mi Bombo, de paliza les gana")
+    columna_fin()
+fila_fin()
+
+alerta("IMPORTANTE, el Cadiz va el puesto 18º (En serio, no se cansan de perder)", "exito")
+
+footer("Creador por el creador que esta enfadado por el Valladolid-Cadiz 3-0")
+
+web_servir(8080)

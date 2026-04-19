@@ -1,0 +1,58 @@
+-- ============================================
+-- Listas y Colecciones / Lists and Collections
+-- ============================================
+
+inicio {
+    decir("=== Listas en Mesa ===\n")
+    
+    -- Crear listas
+    decir("1. Crear listas:")
+    números = [1, 2, 3, 4, 5]
+    nombres = ["Ana", "Luis", "Pedro"]
+    mixta = [1, "dos", 3.0, verdadero]
+    
+    decir("   Números: {números}")
+    decir("   Nombres: {nombres}")
+    decir("   Mixta: {mixta}")
+    
+    decir("")
+    
+    -- Acceso por índice
+    say("2. Index access:")
+    say("   First: {números[0]}")
+    say("   Last: {números[4]}")
+    
+    decir("")
+    
+    -- Iterar
+    decir("3. Iterar lista:")
+    para nombre en nombres {
+        decir("   Hola, {nombre}!")
+    }
+    
+    decir("")
+    
+    -- Operaciones
+    say("4. List operations:")
+    lista = [10, 20, 30]
+    decir("   Original: {lista}")
+    
+    -- Sumar elementos
+    total = 0
+    para n en lista {
+        total = total + n
+    }
+    say("   Sum: {total}")
+    
+    -- Longitud
+    decir("   Longitud: {len(lista)}")
+    
+    decir("")
+    
+    -- Rangos
+    say("5. Ranges:")
+    say("   0..5 creates: [0, 1, 2, 3, 4]")
+    para i en 0..5 {
+        decir("   {i}")
+    }
+}

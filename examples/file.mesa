@@ -1,0 +1,30 @@
+-- 📂 MESA EXPLORER TERMINAL (Solución Definitiva)
+-- Usando interpolación para evitar el conflicto bool/str
+
+decir("--- EXPLORADOR DE ARCHIVOS MESA-LP ---")
+ruta = directorio_actual()
+decir("Ruta: {ruta}")
+decir("---------------------------------------")
+
+elementos = listar_directorio(".")
+
+para nombre en elementos {
+    -- Obtenemos la info real del objeto
+    info = archivo_info(nombre)
+    
+    -- Definimos el icono basado en el booleano
+    icono = "📄"
+    si info.es_directorio == verdadero {
+        icono = "📁"
+    }
+
+    -- Calculamos el tamaño
+    tam_kb = redondear(decimal(info.tamaño) / 1024)
+
+    -- 🔥 LA CLAVE: Usamos llaves {} para no usar el símbolo '+'
+    -- Esto mete las variables directamente en el texto sin sumar tipos
+    decir("{icono} {nombre} | {tam_kb} KB | Ext: {info.extension}")
+}
+
+decir("---------------------------------------")
+decir("Total: {longitud(elementos)} elementos")

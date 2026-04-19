@@ -1,0 +1,8 @@
+{
+  "nombre": "mi_lib",
+  "version": "1.0.0",
+  "descripcion": "<descripción de tu librería>",
+  "autor": "<tu nombre>",
+  "tags": [],
+  "entrada": "mi_lib.mesa"
+}

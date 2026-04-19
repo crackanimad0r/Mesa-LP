@@ -1,0 +1,16 @@
+-- Test simple
+decir("Hola mundo")
+
+nombre = "Mesa"
+decir("Bienvenido a {nombre}")
+
+funcion saludar(nombre) {
+    decir("Hola, {nombre}")
+}
+
+saludar("Antonio")
+
+frutas = ["manzana", "pera", "uva"]
+para fruta en frutas {
+    decir(fruta)
+}
