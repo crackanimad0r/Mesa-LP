@@ -68,10 +68,8 @@ Para instalar el núcleo nativo en tu sistema Linux:
 
 ```bash
 git clone https://github.com/crackanimad0r/Mesa-LP.git
-cd Mesa-LP/mesa-core
-cargo build --release
-cp target/release/mesa-core ../mesa
-cd ..
+cd Mesa-LP-main/Mesa-LP-main
+chmod +x mesa
 ./mesa ayuda
 ```
 
@@ -180,10 +178,8 @@ To install the native core on your Linux system:
 
 ```bash
 git clone https://github.com/crackanimad0r/Mesa-LP.git
-cd Mesa-LP/mesa-core
-cargo build --release
-cp target/release/mesa-core ../mesa
-cd ..
+cd Mesa-LP-main/Mesa-LP-main
+chmod +x mesa
 ./mesa help
 ```
 
