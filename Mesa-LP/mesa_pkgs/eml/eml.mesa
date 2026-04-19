@@ -1,6 +1,0 @@
--- Librería eml: Operador Elementar para Regresión Simbólica
--- Operación binaria funcionalmente completa: eml(x, y) = exp(x) - ln(y)
-
-funcion eml(x, y) {
-    dar potencia(E, x) - log(y)
-}

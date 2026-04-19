@@ -1,9 +1,0 @@
-si 1 == 10 {
-    decir("SI")
-} ademas 1 == 20 {
-    decir("ELIF")
-} sino si 1 == 1 {
-    decir("SINO SI")
-} sino {
-    decir("SINO")
-}

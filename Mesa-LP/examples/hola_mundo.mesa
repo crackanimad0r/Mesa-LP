@@ -1,5 +1,0 @@
--- Hola Mundo simple en español
-inicio {
-    decir("¡Hola, mundo desde Mesa!")
-    decir("Este es un lenguaje bilingüe 🌎")
-}

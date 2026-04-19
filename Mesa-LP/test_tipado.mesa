@@ -1,8 +1,0 @@
-contador: int = 0
-contador = 5 -- Correcto
-
-funcion multiplicar(a: float, b: float) : float {
-    dar a * b
-}
-
-multiplicar("10.0", 5.0) -- Type check error

@@ -1,3 +1,0 @@
-funcion hola_externo() {
-    decir("Hola desde modulo externo!")
-}
