@@ -1,5 +1,0 @@
--- Utilidades de mi_proyecto
-
-funcion sumar(a, b) { dar a + b }
-funcion restar(a, b) { dar a - b }
-funcion multiplicar(a, b) { dar a * b }
